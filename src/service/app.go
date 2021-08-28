@@ -3,6 +3,7 @@ package main
 import (
 	//"fmt"
 	"pkg/configuration"
+	"pkg/db"
 	"pkg/server"
 )
 
@@ -25,23 +26,29 @@ func (rcvr *App) Init() error {
 		-----------------------------------------------------------------------
 	*/
 
-	// capture core settings
+	// Step 1: capture core settings
 	var config configuration.Configuration
 	config, err := configuration.CaptureCoreSettings()
 	if err != nil {
-		// return any errors at this point
 		return err
 	}
 	rcvr.Config = config
 
-	// setup our server
+	// Step 2: setup the data cache
+	dataCache := db.NewTestDataCache([]*db.MetricDataModel{})
+
+	// Step 3: Add router services here
+	metricService := db.NewMetricService(config, dataCache)
+
+	// Step 3: setup our server
+	rcvr.Server = server.NewServer(config, dataCache, metricService)
 
 	// return nil if we are good
 	return nil
 }
 
 // ---- App.Run ----
-func (rcvr *App) Run() error {
+func (rcvr *App) Run() {
 	// start the server if the train has everything it needs
-	return rcvr.Server.Start()
+	rcvr.Server.Start()
 }

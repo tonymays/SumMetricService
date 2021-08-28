@@ -2,28 +2,44 @@ package db
 
 import (
 	"errors"
-	"strconv"
+	"github.com/gofrs/uuid"
 )
 
-// MetricDataModel
+// ---- MetricDataModel ----
 type MetricDataModel struct {
-	Id   string `json:"id,omitempty"`
-	Name string `json:"name,omitempty"`
-	Type string `json:"type,omitempty"`
+	Id		string	`json:"id,omitempty"`
+	Key 	string 	`json:"key,omitempty"`
+	Value 	int 	`json:"vakue,omitempty"`
 }
 
-// TestDataCache
+// ---- NewTestDataCache ----
+func NewTestDataCache(td []*MetricDataModel) *TestDataCache {
+	// returns a pointer to a new testDataCache struct
+	return &TestDataCache{
+		td,
+	}
+}
+
+// --- TestDataCache ----
 type TestDataCache struct {
 	MetricData []*MetricDataModel
 }
 
-// GetMetricData - returns all jsonData in the testDataCache
+// ---- genUuid ----
+func genId() string {
+	id, _ := uuid.NewV4()
+	return id.String()
+}
+
+// ---- GetMetricData ----
 func (tc *TestDataCache) GetMetricData() []*MetricDataModel {
+	// returns all jsonData in the testDataCache
 	return tc.MetricData
 }
 
-// GetMetric - returns a specific jsonData entry from the testDataCache
+// ---- GetMetric ----
 func (tc *TestDataCache) GetMetric(id string) (*MetricDataModel, error) {
+	// returns a specific jsonData entry from the testDataCache
 	for _, td := range tc.MetricData {
 		if td.Id == id {
 			return td, nil
@@ -32,8 +48,9 @@ func (tc *TestDataCache) GetMetric(id string) (*MetricDataModel, error) {
 	return &MetricDataModel{}, errors.New(id + " Not found!")
 }
 
-// DelMetric - returns a specific jsonData entry from the testDataCache
+// ---- DelMetric ----
 func (tc *TestDataCache) DelMetric(id string) error {
+	// returns a specific jsonData entry from the testDataCache
 	var upArray []*MetricDataModel
 	var found bool
 	for _, td := range tc.MetricData {
@@ -50,15 +67,9 @@ func (tc *TestDataCache) DelMetric(id string) error {
 	return nil
 }
 
-// PostMetric - adds a new jsonData entry to the testDataCache
+// ---- PostMetric -----
 func (tc *TestDataCache) PostMetric(td *MetricDataModel) {
-	td.Id = strconv.Itoa(len(tc.MetricData))
+	// adds a new jsonData entry to the testDataCache
+	td.Id = genId()
 	tc.MetricData = append(tc.MetricData, td)
-}
-
-// NewTestDataCache returns a pointer to a new testDataCache struct
-func NewTestDataCache(td []*MetricDataModel) *TestDataCache {
-	return &TestDataCache{
-		td,
-	}
 }

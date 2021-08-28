@@ -7,8 +7,8 @@ import (
 
 // ---- Configuration structure ----
 type Configuration struct {
-	ClearStrategy 		int
-	HTTPS				bool
+	ClearStrategy 		string
+	HTTPS				string
 	Cert       			string
 	Key        			string
 	ServerListenPort	string
