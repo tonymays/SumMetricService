@@ -3,7 +3,7 @@ Metric Test
 
 * Author(s): Anthony Mays
 * Current Version: 0.0.1
-* Release Date: August 27, 2021
+* Release Date: August 28, 2021
 * MIT License
 ___
 ## Getting Started
