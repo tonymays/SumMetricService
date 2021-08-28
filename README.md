@@ -16,5 +16,3 @@ cd to the cloned directory
 ```bash
 $ go build ./src/service
 ```
-
-
