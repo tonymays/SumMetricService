@@ -26,13 +26,11 @@ func (rcvr *App) Init() error {
 	*/
 
 	// apture core settings
-	var err error
-	config, err = configuration.CaptureCoreSettings()
+	rcvr.Config, err := configuration.CaptureCoreSettings()
 	if err != nil {
 		// return any errors at this point
 		return err
 	}
-	rcvr.Config = config
 
 	// setup our server
 
