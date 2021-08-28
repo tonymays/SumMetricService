@@ -1,7 +1,7 @@
 package main
 
 import (
-	//"errors"
+	//"fmt"
 	"pkg/configuration"
 	"pkg/server"
 )
@@ -25,12 +25,14 @@ func (rcvr *App) Init() error {
 		-----------------------------------------------------------------------
 	*/
 
-	// apture core settings
-	rcvr.Config, err := configuration.CaptureCoreSettings()
+	// capture core settings
+	var config configuration.Configuration
+	config, err := configuration.CaptureCoreSettings()
 	if err != nil {
 		// return any errors at this point
 		return err
 	}
+	rcvr.Config = config
 
 	// setup our server
 

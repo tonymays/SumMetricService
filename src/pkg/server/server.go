@@ -9,7 +9,7 @@ import (
 	"pkg/configuration"
 )
 
-// ---- Server struct for the microservice ----
+// ---- Server struct for the MicroService ----
 type Server struct {
 	Router		*mux.Router
 	Config		configuration.Configuration
@@ -39,6 +39,7 @@ func NewServer(config configuration.Configuration) *Server {
 	return &s
 }
 
+// ---- Start ----
 func (rcvr *Server) Start() error {
 	if rcvr.Config.HTTPS {
 		return http.ListenAndServeTLS(":8443", rcvr.Config.Cert, rcvr.Config.Key, handlers.LoggingHandler(os.Stdout, rcvr.Router))
