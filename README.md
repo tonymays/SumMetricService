@@ -46,7 +46,32 @@ $ go get "github.com/gofrs/uuid"
 
 The service must be restarted for config changes to take affect.
 This service only uses in-memory data cache which means data posted via the routes below are lost when the service is stopped
+
+4. Compile the service
+```bash
+$ go build ./src/service
+```
 ___
+
+5. Start the service
+```bash
+$ ./service
+```
+
+This will respond with
+Listening on port :8080
+
 ## Running the API
+1. Open the conf.json file an set InitWithTestData to on
+	Example:
+	{
+		"CountStrategy": 60,
+		"ClearOnSum": "off",
+		"InitWithTestData": "on",
+		"HTTPS": "off",
+		"Cert": "/etc/ssl/certs/cert.pem",
+	    "Key": "/etc/ssl/certs/key.pem",
+		"ServerListenPort": ":8080"
+	}
 
-
+2.

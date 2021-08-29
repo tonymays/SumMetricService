@@ -62,12 +62,39 @@ func (rcvr *Server) Start() {
 
 // ---- InitTestData ----
 func (rcvr *Server) InitTestData() {
-	if rcvr.Config.InitWithTestData() {
+	if rcvr.Config.InitWithTestData == "on" {
 		now := time.Now()
+
+		// write a 3 hour record
+		mdm1 := db.MetricDataModel{}
 		then := now.Add(time.Duration(-180) * time.Minute)
-		mdm.Key = 'active_vistors'
-		mdm.Value = 15
-		mdm.EntryTime = then.String()
-		rcvr.db.PostMetric(&mdm)
+		mdm1.Key = "active_vistors"
+		mdm1.Value = 15
+		mdm1.EntryTime = then.String()
+		rcvr.Db.PostMetric(&mdm1)
+
+		// write a 2 hour record
+		mdm2 := db.MetricDataModel{}
+		then = now.Add(time.Duration(-120) * time.Minute)
+		mdm2.Key = "active_vistors"
+		mdm2.Value = 10
+		mdm2.EntryTime = then.String()
+		rcvr.Db.PostMetric(&mdm2)
+
+		// write a 30 minute record
+		mdm3 := db.MetricDataModel{}
+		then = now.Add(time.Duration(-30) * time.Minute)
+		mdm3.Key = "active_vistors"
+		mdm3.Value = 5
+		mdm3.EntryTime = then.String()
+		rcvr.Db.PostMetric(&mdm3)
+
+		// write a 15 minute record
+		mdm4 := db.MetricDataModel{}
+		then = now.Add(time.Duration(-15) * time.Minute)
+		mdm4.Key = "active_vistors"
+		mdm4.Value = 20
+		mdm4.EntryTime = then.String()
+		rcvr.Db.PostMetric(&mdm4)
 	}
 }
