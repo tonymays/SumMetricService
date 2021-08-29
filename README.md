@@ -175,5 +175,9 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 {
     "key": "active_vistors",
     "sum": 25
-}```
+}
+```
 
+### II) Adding Key Metrics
+
+___
