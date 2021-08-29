@@ -53,27 +53,28 @@ This service only uses in-memory data cache which means data posted via the rout
 ```bash
 $ go build ./src/service
 ```
-___
 
 5. Start the service
 ```bash
 $ ./service
 ```
+___
 
 This will respond with
 Listening on port :8080
 
 ## Running the API
 1. Open the conf.json file an set InitWithTestData to on
-	Example:
-	{
-		"CountStrategy": 60,
-		"ClearOnSum": "off",
-		"InitWithTestData": "on",
-		"HTTPS": "off",
-		"Cert": "/etc/ssl/certs/cert.pem",
-	    "Key": "/etc/ssl/certs/key.pem",
-		"ServerListenPort": ":8080"
-	}
-
+```bash
+Example:
+{
+	"CountStrategy": 60,
+	"ClearOnSum": "off",
+	"InitWithTestData": "on",
+	"HTTPS": "off",
+	"Cert": "/etc/ssl/certs/cert.pem",
+    "Key": "/etc/ssl/certs/key.pem",
+	"ServerListenPort": ":8080"
+}
+```
 2.
