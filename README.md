@@ -45,9 +45,13 @@ step remove outdated metric data for the specified metric
 	- 1 record 30 minutes old with active_vistors at 5
 	- 1 record 15 minutes old with active_vistors at 20
 ```
-* HTTPS				- off|on to use HTTPS or not IGNORE for the this API
-* Cert       		- For HTTPS Certs ignore here
-* Key        		- FOR HTTPS Certs ignore here
+* HTTPS				- off|on, on to use HTTPS or off to HTTPS
+* Cert       		- Cert File
+* Key        		- Cert Key
+```
+	* Warning: This are placed in the config file for future effect and are ignored
+	         by this Service
+```
 * ServerListenPort	- which port the server will run on
 
 ```
