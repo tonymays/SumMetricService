@@ -49,15 +49,15 @@ step remove outdated metric data for the specified metric
 * Cert       		- Cert File
 * Key        		- Cert Key
 ```
-	* Warning: This are placed in the config file for future effect and are ignored
-	         by this Service
+	* Warning: The HTTPS, Cert and Key settings are placed in the config file for
+	           future effect and are ignored by this Service
 ```
 * ServerListenPort	- which port the server will run on
 
 ```
 * Warning: The service must be restarted for config changes to take affect.
 * This service only uses in-memory data cache which means data posted via the routes
-  below are lost when the service is stopped
+  below are lost when the service is stopped or restarted.
 ```
 
 4. Compile the service
