@@ -102,7 +102,7 @@ $ ./service
 ### I) Getting and Summing Metrics
 ___
 #### 1. Get All Metrics Entered
-* GET - /metric/{key}
+* GET /metric/{key}
 
 ##### Request
 
@@ -148,7 +148,7 @@ ___
 #### 2. Get All Active Metrics Entered
 Active Metrics are those metrics that can be sum via the Config CountStrategy setting
 
-* GET - /metric/{key}/active
+* GET /metric/{key}/active
 
 ##### Request
 * Headers
@@ -178,7 +178,7 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 ```
 ***
 #### 3. Sum Metric against CountStrategy
-* GET - /metric/{key}/sum
+* GET /metric/{key}/sum
 
 ##### Request
 * Headers
@@ -202,7 +202,7 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 
 ___
 #### 1. Add a New Metric for a specified key
-* POST - /metric/{key}
+* POST /metric/{key}
 
 ##### Request
 
@@ -233,7 +233,7 @@ ___
 ```
 
 #### 2. Clear Outdated Metrics for a specified key
-* DELETE - /metric/{key}/clear
+* DELETE /metric/{key}
 
 ##### Request
 
