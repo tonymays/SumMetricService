@@ -23,15 +23,14 @@ $ cd SumMetric
 ```
 
 2. Obtain the package dependencies
-
 ```bash
 $ go get "github.com/gorilla/mux"
 $ go get "github.com/gorilla/handlers"
 $ go get "github.com/gofrs/uuid"
 ```
+3. Ensure your go path and pathing variables are established correctly
 
-3. Examine conf.json file specified:
-
+4. Examine conf.json file specified:
 * CountStrategy 	- the number of minutes of elapsed time to filter out a metric (default is 60 minutes)
 * ClearOnSum 		- off|on to clear outdated metrics on a summation operation
 ```
@@ -60,7 +59,7 @@ step remove outdated metric data for the specified metric
   below are lost when the service is stopped or restarted.
 ```
 
-4. Compile the service
+5. Compile the service
 ```bash
 $ go build ./src/service
 ```
