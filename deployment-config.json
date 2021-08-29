@@ -1,0 +1,9 @@
+{
+    "type": "sftp",
+    "host": "45.55.49.63",
+    "username": "api_user",
+    "password": "redsox2004",
+    "port": 22,
+    "remotePath": "/home/api_user/goprojects/SumMetricService",
+    "uploadOnSave": true
+}
