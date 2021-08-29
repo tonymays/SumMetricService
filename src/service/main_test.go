@@ -12,7 +12,6 @@ var ta App
 func setup() {
 	ta = App{}
 	ta.Init()
-	fmt.Println(ta)
 
 }
 
@@ -30,10 +29,10 @@ func checkResponseCode(t *testing.T, expected, actual int) {
 
 func TestGetMetric(t *testing.T) {
 	setup()
-//	req, _ := http.NewRequest("GET", "/metrics/active_visitors", nil)
-//	req.Header.Add("Content-Type", "application/json")
-//	testResponse := executeRequest(ta, req)
-//	checkResponseCode(t, http.StatusOK, testResponse.Code)
+	req, _ := http.NewRequest("GET", "/metrics/active_visitors", nil)
+	req.Header.Add("Content-Type", "application/json")
+	testResponse := executeRequest(ta, req)
+	checkResponseCode(t, http.StatusOK, testResponse.Code)
 }
 
 
