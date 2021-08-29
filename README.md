@@ -33,7 +33,7 @@ $ go get "github.com/gofrs/uuid"
 3. Examine conf.json file specified:
 
 * CountStrategy 	- the number of minutes of elapsed time to filter out a metric (default is 60 minutes)
-* ClearOnSum 		- off|on to clear outdated metrics on a summation operation
+* ClearOnSum 		- off|on to clear outdated metrics on a summation operation ... PLEASE NOTE: IF THIS IS TURN ON YOU WILL LOSE OUTDATED METRICS ON THE NEXT SUMMATION ROUTE
 * InitWithTestData	- off|on if on the system will generate the following:
 ```bash
 - 1 record 3 hours old with active_visitors at 15
