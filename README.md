@@ -86,7 +86,6 @@ ___
 
 ##### Request
 
-***
 * Headers
 
 ```
