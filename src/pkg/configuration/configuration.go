@@ -7,7 +7,8 @@ import (
 
 // ---- Configuration structure ----
 type Configuration struct {
-	ClearStrategy 		string
+	CountStrategy 		int
+	ClearOnSum			string
 	HTTPS				string
 	Cert       			string
 	Key        			string

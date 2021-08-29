@@ -7,9 +7,10 @@ import (
 
 // ---- MetricDataModel ----
 type MetricDataModel struct {
-	Id		string	`json:"id,omitempty"`
-	Key 	string 	`json:"key,omitempty"`
-	Value 	int 	`json:"vakue,omitempty"`
+	Id			string	`json:"id,omitempty"`
+	Key 		string 	`json:"key,omitempty"`
+	Value 		int 	`json:"value,omitempty"`
+	EntryTime	string	`json:"entry_time,omitempty"`
 }
 
 // ---- NewTestDataCache ----

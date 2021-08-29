@@ -1,11 +1,20 @@
 package server
 
 import (
+	"encoding/json"
 	"net/http"
 )
 
-// establish what the options endpoints can handle
+
+// ---- jsonErr ----
+type jsonErr struct {
+	Code int    `json:"code"`
+	Text string `json:"text"`
+}
+
+// ---- HandleOptionsRequest ----
 func HandleOptionsRequest(w http.ResponseWriter, r *http.Request) {
+	// establish what the options endpoints can handle
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 //	w.Header().Add("Access-Control-Allow-Headers", "Content-Type, Auth-Token, API-Key")
 //	w.Header().Add("Access-Control-Expose-Headers", "Content-Type, Auth-Token, API-Key")
@@ -14,10 +23,12 @@ func HandleOptionsRequest(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-// establish a generic response header
+// ---- SerResponseHeaders ----
 func SetResponseHeaders(w http.ResponseWriter) http.ResponseWriter {
-// placed here to show greater possibility
-//func SetResponseHeaders( w http.ResponseWriter, authToken string, apiKey string ) http.ResponseWriter {
+	// establish a generic response header
+	// a better header place placed here to show greater possibility
+	//func SetResponseHeaders( w http.ResponseWriter, authToken string, apiKey string ) http.ResponseWriter {
+
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 //	w.Header().Add("Access-Control-Allow-Headers", "Content-Type, Auth-Token, API-Key")
 //	w.Header().Add("Access-Control-Expose-Headers", "Content-Type, Auth-Token, API-Key")
@@ -37,3 +48,15 @@ func SetResponseHeaders(w http.ResponseWriter) http.ResponseWriter {
 	*/
 	return w
 }
+
+// ---- throw ----
+func throw(w http.ResponseWriter, callErr error) {
+	// toss back a standard error message
+	w = SetResponseHeaders(w)
+	w.WriteHeader(http.StatusForbidden)
+	err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusForbidden, Text: callErr.Error()})
+	if err != nil {
+		panic(err)
+	}
+}
+

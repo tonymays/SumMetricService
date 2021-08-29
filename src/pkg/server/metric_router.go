@@ -2,7 +2,7 @@ package server
 
 import (
 	"encoding/json"
-	"fmt"
+//	"fmt"
 	"github.com/gorilla/mux"
 	"io"
 	"io/ioutil"
@@ -33,11 +33,15 @@ func NewMetricRouter(config configuration.Configuration, router *mux.Router, db 
 	// Setup OPTIONS Method for all endpoints
 	router.HandleFunc("/metric/{key}", HandleOptionsRequest).Methods("OPTIONS")
 	router.HandleFunc("/metric/{key}/sum", HandleOptionsRequest).Methods("OPTIONS")
+	router.HandleFunc("/metric/{key}/active", HandleOptionsRequest).Methods("OPTIONS")
+	router.HandleFunc("/metric/{key}/clear", HandleOptionsRequest).Methods("OPTIONS")
 
 	// Setup endpoint receivers - all enpoints must check themselves into the middleware for a COVID Test.
 	router.HandleFunc("/metric/{key}", VerifyToken(metricRouter.postMetric, config)).Methods("POST")
 	router.HandleFunc("/metric/{key}", VerifyToken(metricRouter.getMetric, config)).Methods("GET")
 	router.HandleFunc("/metric/{key}/sum", VerifyToken(metricRouter.sumMetric, config)).Methods("GET")
+	router.HandleFunc("/metric/{key}/active", VerifyToken(metricRouter.showActiveMetrics, config)).Methods("GET")
+	router.HandleFunc("/metric/{key}/clear", VerifyToken(metricRouter.clearOutdatedMetrics, config)).Methods("DELETE")
 
 	/*
 		return our router now that it is setup as a dependency of our server
@@ -49,20 +53,18 @@ func NewMetricRouter(config configuration.Configuration, router *mux.Router, db 
 	return router
 }
 
+// ---- metricRouter.postMetric ----
 func (rcvr *metricRouter) postMetric(w http.ResponseWriter, r *http.Request) {
 	// grab the body
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 	if err != nil {
 		panic(err)
 	}
-	err = r.Body.Close()
-	if err != nil {
+	if err := r.Body.Close(); err != nil {
 		panic(err)
 	}
-
 	var m root.Metric
-	err = json.Unmarshal(body, &m)
-	if err != nil {
+	if err := json.Unmarshal(body, &m); err != nil {
 		panic(err)
 	}
 
@@ -70,60 +72,72 @@ func (rcvr *metricRouter) postMetric(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	m.Key = vars["key"]
 
-	// show it to me
-	fmt.Println(m)
-
-
-
-
-	w = SetResponseHeaders(w)
-	w.WriteHeader(http.StatusOK)
-
-
-/*	vars := mux.Vars(r)
-
-
-
-
-	var user root.User
-	user.Uuid = vars["userUuid"]
-	users, err := rcvr.dbService.FindUser(user)
-	if err != nil {
- 		throw(w,err)
-		return
-	}
-	var role root.Role
-	role.Uuid = vars["roleUuid"]
-	roles, err := rcvr.dbService.FindRole(role)
-	if err != nil {
-		throw(w,err)
-		return
-	}
-	var filter root.RoleUser
-	var update root.RoleUser
-	filter.UserUuid = users[0].PrivateUuid
-	filter.RoleUuid = roles[0].PrivateUuid
-	update.Status = "Active"
-	err = rcvr.dbService.UpdateRoleUser(filter,update)
+	// add the metric
+	m, err = rcvr.metricService.AddMetric(m)
 	if err == nil {
-		w = SetResponseHeaders(w, "", "")
+		// respond with success
+		w = SetResponseHeaders(w)
 		w.WriteHeader(http.StatusOK)
-		err := json.NewEncoder(w).Encode(update)
-		if err != nil {
+		if err := json.NewEncoder(w).Encode(m); err != nil {
 			panic(err)
 		}
 	} else {
-		throw(w,err)
+		throw(w, err)
 	}
-*/
 }
 
+// ---- metricRouter.getMetric ----
 func (rcvr *metricRouter) getMetric(w http.ResponseWriter, r *http.Request) {
-	w = SetResponseHeaders(w)
-	w.WriteHeader(http.StatusOK)
+	m, err := rcvr.metricService.GetMetrics()
+	if err == nil {
+		w = SetResponseHeaders(w)
+		w.WriteHeader(http.StatusOK)
+		if err := json.NewEncoder(w).Encode(m); err != nil {
+			panic(err)
+		}
+	} else {
+		throw(w, err)
+	}
 }
 
-func (rcvr *metricRouter) sumMetric(w http.ResponseWriter, r *http.Request) {
-	w = SetResponseHeaders(w)
-	w.WriteHeader(http.StatusOK)
+// ---- metricRouter.showActiveMetric ----
+func (rcvr *metricRouter) showActiveMetrics(w http.ResponseWriter, r *http.Request) {
+	m, err := rcvr.metricService.ShowActiveMetrics()
+	if err == nil {
+		w = SetResponseHeaders(w)
+		w.WriteHeader(http.StatusOK)
+		if err := json.NewEncoder(w).Encode(m); err != nil {
+			panic(err)
+		}
+	} else {
+		throw(w, err)
+	}
 }
+
+// ---- metricRouter.sumMetric ----
+func (rcvr *metricRouter) sumMetric(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	m, err := rcvr.metricService.SumMetrics(vars["key"])
+	if err == nil {
+		w = SetResponseHeaders(w)
+		w.WriteHeader(http.StatusOK)
+		if err := json.NewEncoder(w).Encode(m); err != nil {
+			panic(err)
+		}
+	} else {
+		throw(w, err)
+	}
+}
+
+// ---- metricRouter.clearOutdatedMetrics ----
+func (rcvr *metricRouter) clearOutdatedMetrics(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	err := rcvr.metricService.ClearOutdatedMetrics(vars["key"])
+	if err == nil {
+		w = SetResponseHeaders(w)
+		w.WriteHeader(http.StatusOK)
+	} else {
+		throw(w, err)
+	}
+}
+
