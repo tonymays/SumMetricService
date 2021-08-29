@@ -53,11 +53,6 @@ This service only uses in-memory data cache which means data posted via the rout
 ```bash
 $ go build ./src/service
 ```
-
-5. Start the service
-```bash
-$ ./service
-```
 ___
 
 This will respond with
@@ -77,4 +72,8 @@ Example:
 	"ServerListenPort": ":8080"
 }
 ```
-2.
+2. Start the service
+```bash
+$ ./service
+```
+
