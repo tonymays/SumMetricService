@@ -92,11 +92,11 @@ $ ./service
 
 #### API List
 ```
-* POST 		- /metric/{key} 		(adds a new metric for a specified key - key)
-* GET 		- /metric/{key} 		(returns all metrics for a specified key)
-* DELETE 	- /metric/{key} 		(clears outdated metrics for a specified key)
-* GET 		- /metric/{key}/active 	(returns all non-outdated metrics for a specified key)
-* GET 		- /metric/{key}/sum 	(returns the sum of metric for a specified key)
+* POST /metric/{key}       (adds a new metric for a specified key - key)
+* GET  /metric/{key}       (returns all metrics for a specified key)
+* DELETE /metric/{key}     (clears outdated metrics for a specified key)
+* GET /metric/{key}/active (returns all non-outdated metrics for a specified key)
+* GET /metric/{key}/sum    (returns the sum of metric for a specified key)
 ```
 
 ### I) Getting and Summing Metrics
