@@ -8,8 +8,6 @@ Metric Test
 ___
 ## Getting Started
 
-## Getting Started
-
 Follow the instructions below to get the Go RESTful API up and running on your Linux Environment
 
 ### Prerequisites
