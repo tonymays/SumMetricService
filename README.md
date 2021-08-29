@@ -78,7 +78,7 @@ $ ./service
 ```
 
 ## API Route Guide
-### I) Checking Metrics (active or not)
+### I) Getting and Summing Metrics
 
 ___
 #### 1. Get All Metrics Entered
@@ -95,9 +95,6 @@ ___
 ```
 
 ##### Response
-
-The response will be different each time but should follow the test data outlined above
-
 * Body
 ```
 [
@@ -127,17 +124,14 @@ The response will be different each time but should follow the test data outline
     }
 ]
 ```
-
+***
 #### 2. Get All Active Metrics Entered
 Active Metrics are those metrics that can be sum via the Config CountStrategy setting
 
 * GET - /metric/active_visitors/active
 
 ##### Request
-
-***
 * Headers
-
 ```
 {
   Content-Type: application/json
@@ -145,7 +139,6 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 ```
 
 ##### Response
-
 * Body
 ```
 [
@@ -163,13 +156,11 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
     }
 ]
 ```
-
+***
 #### 3. Sum Metric against CountStrategy
 * GET - /metric/active_visitors/sum
 
 ##### Request
-
-***
 * Headers
 
 ```
@@ -179,7 +170,6 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 ```
 
 ##### Response
-
 * Body
 ```
 {
