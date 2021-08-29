@@ -68,13 +68,13 @@ Listening on port :8080
 ```bash
 Example:
 {
-	"CountStrategy": 60,
-	"ClearOnSum": "off",
-	"InitWithTestData": "on",
-	"HTTPS": "off",
-	"Cert": "/etc/ssl/certs/cert.pem",
-    "Key": "/etc/ssl/certs/key.pem",
-	"ServerListenPort": ":8080"
+"CountStrategy": 60,
+"ClearOnSum": "off",
+"InitWithTestData": "on",
+"HTTPS": "off",
+"Cert": "/etc/ssl/certs/cert.pem",
+"Key": "/etc/ssl/certs/key.pem",
+"ServerListenPort": ":8080"
 }
 ```
 2.
