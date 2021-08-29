@@ -107,7 +107,6 @@ ___
 ##### Request
 
 * Headers
-
 ```
 {
   Content-Type: application/json
@@ -182,7 +181,6 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 
 ##### Request
 * Headers
-
 ```
 {
   Content-Type: application/json
@@ -207,7 +205,6 @@ ___
 ##### Request
 
 * Headers
-
 ```
 {
   Content-Type: application/json
@@ -215,7 +212,6 @@ ___
 ```
 
 *Body
-
 ```
 {
     "value":6
@@ -238,13 +234,11 @@ ___
 ##### Request
 
 * Headers
-
 ```
 {
   Content-Type: application/json
 }
 ```
-
 
 ##### Example Response
 * Header
