@@ -92,17 +92,17 @@ $ ./service
 
 #### API List
 ```
-* GET - /metric/active_visitors (returns all metrics for a specified key)
-* GET - /metric/active_visitors/active (returns all non-outdated metrics for a specified key)
-* GET - /metric/active_visitors/sum (returns the sum of metric for a specified key)
-* POST - /metric/active_visitors (adds a new metric for a specified key)
-* DELETE - /metric/active_visitors/clear (clears outdated metrics for a specified key)
+* GET - /metric/{key} (returns all metrics for a specified key)
+* GET - /metric/{key}/active (returns all non-outdated metrics for a specified key)
+* GET - /metric/{key}/sum (returns the sum of metric for a specified key)
+* POST - /metric/{key} (adds a new metric for a specified key - key)
+* DELETE - /metric/{key}/clear (clears outdated metrics for a specified key)
 ```
 
 ### I) Getting and Summing Metrics
 ___
 #### 1. Get All Metrics Entered
-* GET - /metric/active_visitors
+* GET - /metric/{key}
 
 ##### Request
 
@@ -148,7 +148,7 @@ ___
 #### 2. Get All Active Metrics Entered
 Active Metrics are those metrics that can be sum via the Config CountStrategy setting
 
-* GET - /metric/active_visitors/active
+* GET - /metric/{key}/active
 
 ##### Request
 * Headers
@@ -178,7 +178,7 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 ```
 ***
 #### 3. Sum Metric against CountStrategy
-* GET - /metric/active_visitors/sum
+* GET - /metric/{key}/sum
 
 ##### Request
 * Headers
@@ -202,7 +202,7 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 
 ___
 #### 1. Add a New Metric for a specified key
-* POST - /metric/active_visitors
+* POST - /metric/{key}
 
 ##### Request
 
@@ -233,7 +233,7 @@ ___
 ```
 
 #### 2. Clear Outdated Metrics for a specified key
-* DELETE - /metric/active_visitors/clear
+* DELETE - /metric/{key}/clear
 
 ##### Request
 
