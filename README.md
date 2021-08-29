@@ -81,7 +81,7 @@ $ ./service
 ### I) Checking Metrics (active or not)
 
 ___
-#### 1. Signin
+#### 1. Get All Metrics Entered
 * GET - /metric/active_visitors
 
 ##### Request
@@ -129,4 +129,61 @@ The response will be different each time but should follow the test data outline
 ]
 ```
 
+#### 2. Get All Active Metrics Entered
+Active Metrics are those metrics that can be sum via the Config CountStrategy setting
 
+* GET - /metric/active_visitors/active
+
+##### Request
+
+***
+* Headers
+
+```
+{
+  Content-Type: application/json
+}
+```
+
+##### Response
+
+* Body
+```
+[
+    {
+        "id": "a2493c7f-6332-4f65-8695-030009b997f2",
+        "key": "active_vistors",
+        "value": 5,
+        "entry_time": "2021-08-29 00:47:34.418686251 +0000 UTC m=-1799.998222152"
+    },
+    {
+        "id": "19e374bb-9220-4cb6-aedb-2c9b05d16dd6",
+        "key": "active_vistors",
+        "value": 20,
+        "entry_time": "2021-08-29 01:02:34.418686251 +0000 UTC m=-899.998222152"
+    }
+]
+```
+
+#### 3. Sum Metric against CountStrategy
+* GET - /metric/active_visitors/sum
+
+##### Request
+
+***
+* Headers
+
+```
+{
+  Content-Type: application/json
+}
+```
+
+##### Response
+
+* Body
+```
+{
+    "key": "active_vistors",
+    "sum": 25
+}```
