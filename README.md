@@ -77,3 +77,56 @@ Example:
 $ ./service
 ```
 
+## API Route Guide
+### I) Checking Metrics (active or not)
+
+___
+#### 1. Signin
+* GET - /metric/active_visitors
+
+##### Request
+
+***
+* Headers
+
+```
+{
+  Content-Type: application/json
+}
+```
+
+##### Response
+
+The response will be different each time but should follow the test data outlined above
+
+* Body
+```
+[
+    {
+        "id": "ba63e7de-b204-41d3-9ca9-523dc23c3bce",
+        "key": "active_vistors",
+        "value": 15,
+        "entry_time": "2021-08-28 22:17:34.418686251 +0000 UTC m=-10799.998222152"
+    },
+    {
+        "id": "0f8da723-7fd5-4576-a7ee-4f158dc67e16",
+        "key": "active_vistors",
+        "value": 10,
+        "entry_time": "2021-08-28 23:17:34.418686251 +0000 UTC m=-7199.998222152"
+    },
+    {
+        "id": "a2493c7f-6332-4f65-8695-030009b997f2",
+        "key": "active_vistors",
+        "value": 5,
+        "entry_time": "2021-08-29 00:47:34.418686251 +0000 UTC m=-1799.998222152"
+    },
+    {
+        "id": "19e374bb-9220-4cb6-aedb-2c9b05d16dd6",
+        "key": "active_vistors",
+        "value": 20,
+        "entry_time": "2021-08-29 01:02:34.418686251 +0000 UTC m=-899.998222152"
+    }
+]
+```
+
+
