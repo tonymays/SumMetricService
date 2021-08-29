@@ -63,7 +63,7 @@ This will respond with
 Listening on port :8080
 
 ## Running the API
-1. Open the conf.json file an set InitWithTestData to on
+1. Open the conf.json file an set InitWithTestData to on to obtain test data described above
 ```bash
 Example:
 {
@@ -182,10 +182,10 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 }
 ```
 
-### II) Adding Key Metrics
+### II) Add and Clear Key Metrics
 
 ___
-#### 1. Get All Metrics Entered
+#### 1. Add a New Metric for a specified key
 * POST - /metric/active_visitors
 
 ##### Request
@@ -214,4 +214,24 @@ ___
     "value": 6,
     "entry_time": "2021-08-28 23:58:11.115465451 +0000 UTC"
 }
+```
+
+#### 2. Clear Outdated Metrics for a specified key
+* DELETE - /metric/active_visitors/clear
+
+##### Request
+
+* Headers
+
+```
+{
+  Content-Type: application/json
+}
+```
+
+
+##### Example Response
+* Header
+```
+Status: 200Ok
 ```
