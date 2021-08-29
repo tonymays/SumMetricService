@@ -95,6 +95,18 @@ to run the built in Test Package
 $ go test -v ./src/service
 ```
 
+The 3 go test are basic in that we are only testing for an HTTP Status Code
+from the Request.  So below is a sample response from the go command above:
+```bash
+=== RUN   TestGetMetric
+--- PASS: TestGetMetric (0.00s)
+=== RUN   TestSumMetric
+--- PASS: TestSumMetric (0.00s)
+=== RUN   TestPostMetric
+--- PASS: TestPostMetric (0.00s)
+PASS
+ok  	service	0.017s
+```
 ## API Route Guide
 
 #### API List
