@@ -34,14 +34,13 @@ func NewMetricRouter(config configuration.Configuration, router *mux.Router, db 
 	router.HandleFunc("/metric/{key}", HandleOptionsRequest).Methods("OPTIONS")
 	router.HandleFunc("/metric/{key}/sum", HandleOptionsRequest).Methods("OPTIONS")
 	router.HandleFunc("/metric/{key}/active", HandleOptionsRequest).Methods("OPTIONS")
-	router.HandleFunc("/metric/{key}/clear", HandleOptionsRequest).Methods("OPTIONS")
 
 	// Setup endpoint receivers - all enpoints must check themselves into the middleware for a COVID Test.
 	router.HandleFunc("/metric/{key}", VerifyToken(metricRouter.postMetric, config)).Methods("POST")
 	router.HandleFunc("/metric/{key}", VerifyToken(metricRouter.getMetric, config)).Methods("GET")
+	router.HandleFunc("/metric/{key}", VerifyToken(metricRouter.clearOutdatedMetrics, config)).Methods("DELETE")
 	router.HandleFunc("/metric/{key}/sum", VerifyToken(metricRouter.sumMetric, config)).Methods("GET")
 	router.HandleFunc("/metric/{key}/active", VerifyToken(metricRouter.showActiveMetrics, config)).Methods("GET")
-	router.HandleFunc("/metric/{key}/clear", VerifyToken(metricRouter.clearOutdatedMetrics, config)).Methods("DELETE")
 
 	/*
 		return our router now that it is setup as a dependency of our server
