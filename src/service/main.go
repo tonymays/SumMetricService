@@ -21,7 +21,7 @@ func main() {
 	a := App{}
 
 	// use dependency injection to fill it in
-	err := a.Init()
+	err := a.Init("production")
 	// if Init fails with error ...
 	if err != nil {
 		// ... then, stop the train right here.

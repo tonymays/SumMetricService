@@ -17,13 +17,17 @@ type Configuration struct {
 }
 
 // ----
-func CaptureCoreSettings() (Configuration, error) {
+func CaptureCoreSettings(env string) (Configuration, error) {
 	// use a variable here siince we could have a test_conf.json file later
-	confFile 	:= "conf.json"
-	file, _ 	:= os.Open(confFile)
-	decoder		:= json.NewDecoder(file)
-	settings	:= Configuration{}
-	err			:= decoder.Decode(&settings)
+	confFile := "conf_test.json"
+	if env == "production" {
+		confFile = "conf.json"
+	}
+
+	file, _ := os.Open(confFile)
+	decoder	:= json.NewDecoder(file)
+	settings := Configuration{}
+	err	:= decoder.Decode(&settings)
 
 	// stop the train right here if we catch COVID (LOL)
 	if err != nil {

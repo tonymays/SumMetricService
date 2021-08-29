@@ -14,7 +14,7 @@ type App struct {
 }
 
 // ---- App.Init ----
-func (rcvr *App) Init() error {
+func (rcvr *App) Init(env string) error {
 	/*
 		-----------------------------------------------------------------------
 			App.Init is perform as a dependency injection for the app core
@@ -26,9 +26,10 @@ func (rcvr *App) Init() error {
 		-----------------------------------------------------------------------
 	*/
 
+
 	// Step 1: capture core settings
 	var config configuration.Configuration
-	config, err := configuration.CaptureCoreSettings()
+	config, err := configuration.CaptureCoreSettings(env)
 	if err != nil {
 		return err
 	}

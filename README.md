@@ -87,6 +87,14 @@ Example:
 $ ./service
 ```
 
+## Auto Testing the API
+The API has three built in go test (see main_test.go in /src/service).  The API also
+has a configuration file for both the API and the API Test Package. Do following
+to run the built in Test Package
+```bash
+$ go test -v ./src/service
+```
+
 ## API Route Guide
 
 #### API List

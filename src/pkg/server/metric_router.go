@@ -76,7 +76,7 @@ func (rcvr *metricRouter) postMetric(w http.ResponseWriter, r *http.Request) {
 	if err == nil {
 		// respond with success
 		w = SetResponseHeaders(w)
-		w.WriteHeader(http.StatusOK)
+		w.WriteHeader(http.StatusCreated)
 		if err := json.NewEncoder(w).Encode(m); err != nil {
 			panic(err)
 		}
