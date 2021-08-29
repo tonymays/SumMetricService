@@ -35,7 +35,8 @@ $ go get "github.com/gofrs/uuid"
 * CountStrategy 	- the number of minutes of elapsed time to filter out a metric (default is 60 minutes)
 * ClearOnSum 		- off|on to clear outdated metrics on a summation operation
 ```
-	WARNING: if this setting is turned on the Summation Route, defined below, will as it's first step remove outdated metric data for the specified metric
+	WARNING: if this setting is turned on the Summation Route, defined below, will as it's first
+	step remove outdated metric data for the specified metric
 ```
 * InitWithTestData	- off|on if on the system will generate the following:
 ```bash
