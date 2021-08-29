@@ -82,8 +82,17 @@ $ ./service
 ```
 
 ## API Route Guide
-### I) Getting and Summing Metrics
 
+#### API List
+```
+* GET - /metric/active_visitors (returns all metrics for a specified key)
+* GET - /metric/active_visitors/active (returns all non-outdated metrics for a specified key)
+* GET - /metric/active_visitors/sum (returns the sum of metric for a specified key)
+* POST - /metric/active_visitors (adds a new metric for a specified key)
+* DELETE - /metric/active_visitors/clear (clears outdated metrics for a specified key)
+```
+
+### I) Getting and Summing Metrics
 ___
 #### 1. Get All Metrics Entered
 * GET - /metric/active_visitors
