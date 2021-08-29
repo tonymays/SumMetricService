@@ -9,6 +9,7 @@ import (
 type Configuration struct {
 	CountStrategy 		int
 	ClearOnSum			string
+	InitWithTestData	string
 	HTTPS				string
 	Cert       			string
 	Key        			string

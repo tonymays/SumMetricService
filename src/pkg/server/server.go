@@ -9,6 +9,7 @@ import (
 	"pkg"
 	"pkg/configuration"
 	"pkg/db"
+	"time"
 )
 
 // ---- Server struct for the MicroService ----
@@ -56,5 +57,17 @@ func (rcvr *Server) Start() {
 	} else {
 		fmt.Println("Listening on port", rcvr.Config.ServerListenPort)
 		http.ListenAndServe(rcvr.Config.ServerListenPort, handlers.LoggingHandler(os.Stdout, rcvr.Router))
+	}
+}
+
+// ---- InitTestData ----
+func (rcvr *Server) InitTestData() {
+	if rcvr.Config.InitWithTestData() {
+		now := time.Now()
+		then := now.Add(time.Duration(-180) * time.Minute)
+		mdm.Key = 'active_vistors'
+		mdm.Value = 15
+		mdm.EntryTime = then.String()
+		rcvr.db.PostMetric(&mdm)
 	}
 }

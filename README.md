@@ -32,13 +32,20 @@ $ go get "github.com/gofrs/uuid"
 
 3. Examine conf.json file specified:
 
-* CountStrategy 	- the number of minutes of elapsed time to filter out a metric
+* CountStrategy 	- the number of minutes of elapsed time to filter out a metric (default is 60 minutes)
 * ClearOnSum 		- off|on to clear outdated metrics on a summation operation
+* InitWithTestData	- off|on if on the system will generate the following:
+						- 1 record 3 hours old with active_visitors at 15
+						- 1 record 2 hours old with active_vistiors at 10
+						- 1 record 30 minutes old with active_vistors at 5
+						- 1 record 15 minutes old with active_vistors at 20
 * HTTPS				- off|on to use HTTPS or not IGNORE for the this API
 * Cert       		- For HTTPS Certs ignore here
 * Key        		- FOR HTTPS Certs ignore here
 * ServerListenPort	- which port the server will run on
 
+The service must be restarted for config changes to take affect.
+This service only uses in-memory data cache which means data posted via the routes below are lost when the service is stopped
 ___
 ## Running the API
 

@@ -43,6 +43,9 @@ func (rcvr *App) Init() error {
 	// Step 3: setup our server
 	rcvr.Server = server.NewServer(config, dataCache, metricService)
 
+	// Step 4: initialize test data
+	rcvr.Server.InitTestData()
+
 	// return nil if we are good
 	return nil
 }
