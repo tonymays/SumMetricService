@@ -51,8 +51,8 @@ $ go get "github.com/gofrs/uuid"
 * ServerListenPort	- which port the server will run on
 
 ```
-*Warning: The service must be restarted for config changes to take affect.
-*This service only uses in-memory data cache which means data posted via the routes below are lost when the service is stopped
+* Warning: The service must be restarted for config changes to take affect.
+* This service only uses in-memory data cache which means data posted via the routes below are lost when the service is stopped
 ```
 
 4. Compile the service
