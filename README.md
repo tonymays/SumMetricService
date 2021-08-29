@@ -94,7 +94,7 @@ ___
 }
 ```
 
-##### Response
+##### Example Response
 * Body
 ```
 [
@@ -138,7 +138,7 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 }
 ```
 
-##### Response
+##### Example Response
 * Body
 ```
 [
@@ -169,7 +169,7 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 }
 ```
 
-##### Response
+##### Example Response
 * Body
 ```
 {
@@ -181,3 +181,33 @@ Active Metrics are those metrics that can be sum via the Config CountStrategy se
 ### II) Adding Key Metrics
 
 ___
+#### 1. Get All Metrics Entered
+* POST - /metric/active_visitors
+
+##### Request
+
+* Headers
+
+```
+{
+  Content-Type: application/json
+}
+```
+
+*Body
+
+```
+{
+    "value":6
+}
+```
+
+##### Example Response
+* Body
+```
+{
+    "key": "active_vistors",
+    "value": 6,
+    "entry_time": "2021-08-28 23:58:11.115465451 +0000 UTC"
+}
+```
